@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Pie Maker</title>
+    <style>
+        .options {
+            width: 300px;
+            display: inline-block;
+            vertical-align: top;
+        }
+    </style>
+</head>
+
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg" width="400" height="400">
+        <rect x="0" y="0" width="400" height="400" fill="transparent" stroke="black" />
+        <circle id="crust-outer" cx="200" cy="200" r="150" fill="transparent" />
+        <circle id="crust-inner" cx="200" cy="200" r="110" fill="transparent" />
+
+    </svg>
+    <div id="options" class="options">
+        <fieldset>
+            <legend>Please Choose a Crust</legend>
+            <input type="radio" name="crust" value="none" checked />None<br>
+            <input type="radio" name="crust" value="strawberry" checked />Strawberry<br>
+            <input type="radio" name="crust" value="chocolate" checked />Chocolate<br>
+            <input type="radio" name="crust" value="vanilla" checked />Vanilla<br>
+            </legend>
+        </fieldset>
+    </div>
+    <script>
+        const crustElements = document.querySelectorAll('[name=crust]');
+        const outerCrust = document.getElementById('crust-outer');
+        const innerCrust = document.getElementById('crust-inner');
+        document.getElementById('options').addEventListener('change', (e) => {
+            if (e.target.name === 'crust') {
+                let colors = [];
+                switch (e.target.value) {
+                    case 'none':
+                        colors = ['transparent', 'transparent'];
+                        break;
+                    case 'strawberry':
+                        colors = ['#DECCB8', '#F2DFC9'];
+                        break;
+                    case 'chocolate':
+                        colors = ['#BA870D', '#DEA010'];
+                        break;
+                    case 'vanilla':
+                        colors = ['#2E1802', '#422303'];
+                        break;
+                        default:
+                        return;
+               
+            }
+            innerCrust.setAttribute('fill', colors[0]);
+            innerCrust.setAttribute('fill', colors[1]);
+ }
+        });
+    </script>
+</body>
+
+</html>
